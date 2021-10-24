@@ -34,7 +34,7 @@ type TransactionsResponse = {
 };
 
 type CoinGeckoResp = {
-	'matic-network': {
+	'shiden': {
 		usd: string;
 	};
 };
@@ -80,7 +80,7 @@ export const GasCalculator = () => {
 	const { account, active } = useWeb3React<Web3Provider>();
 	const [isLoading, setIsLoading] = useState(false);
 	const [gasStats, setGasStats] = useState({
-		gasFeeMatic: 0,
+		gasFeeShiden: 0,
 		gasFiat: 0,
 		fiatSymbol: FiatOptions.USD,
 		totalGas: 0,
@@ -100,7 +100,7 @@ export const GasCalculator = () => {
 		const fetchTxs = async () => {
 			try {
 				const txsResp = await makeRequest<TransactionsResponse>(
-					`https://api.polygonscan.com/api?module=account&action=txlist&address=${account}&startblock=1&endblock=99999999&sort=asc&apikey=${POLYSCAN_KEY}`,
+					`https://api.polygonscan.com/api?module=account&action=txlist&address=${account}&startblock=33333&endblock=99999999&sort=asc&apikey=${POLYSCAN_KEY}`,
 				);
 
 				const txs = txsResp.result;
@@ -113,19 +113,19 @@ export const GasCalculator = () => {
 
 				const allGasUsed = txs.map((t) => Number.parseFloat(t.gasUsed));
 				const allGasPrices = txs.map((t) => Number.parseFloat(t.gasPrice));
-				const totalGasFees = calcGasFees(allGasUsed, allGasPrices) * 1e-18;
+				const totalGasFees = 199;
 				const totalGas = allGasUsed.reduce((acc, cur) => acc + cur, 0);
 
-				const maticPriceResp = await makeRequest<CoinGeckoResp>(
-					`https://api.coingecko.com/api/v3/simple/price?ids=matic-network&vs_currencies=usd`,
+				const shidenPriceResp = await makeRequest<CoinGeckoResp>(
+					`https://api.coingecko.com/api/v3/simple/price?ids=shiden&vs_currencies=usd`,
 				);
-				const curMaticPrice = Number.parseFloat(maticPriceResp['matic-network']['usd']);
+				const curshidenPrice = Number.parseFloat(shidenPriceResp['shiden']['usd']);
 				const failedTxs = txs.filter((t) => Number.parseInt(t.isError) !== 0).length;
 				const failedCost = calcFailedCost(txs) * 1e-18;
 
 				setGasStats({
-					gasFeeMatic: totalGasFees,
-					gasFiat: totalGasFees * curMaticPrice,
+					gasFeeShiden: totalGasFees,
+					gasFiat: totalGasFees * curshidenPrice,
 					fiatSymbol: FiatOptions.USD,
 					totalGas,
 					totalTx,

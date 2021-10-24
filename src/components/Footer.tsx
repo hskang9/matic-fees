@@ -27,7 +27,7 @@ const Container = styled.div`
 export const Footer = () => {
 	return (
 		<Container>
-			<a href="https://github.com/jastronaut/matic-fees" title="github">
+			<a href="https://github.com/hskang9/shiden-fees" title="github">
 				source
 			</a>
 		</Container>

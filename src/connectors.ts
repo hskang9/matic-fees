@@ -8,5 +8,6 @@ export const injectedConnector = new InjectedConnector({
 		5, // Göerli
 		42, // Kovan,
 		137, // matic mainet
+		336, // Shiden canary net
 	],
 });

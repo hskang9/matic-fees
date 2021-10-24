@@ -66,7 +66,7 @@ export const Navbar = () => {
 	return (
 		<Container>
 			<ContentLeft>
-				<Name>{'matic-fees.wtf'}</Name>
+				<Name>{'shiden-fees.wtf'}</Name>
 			</ContentLeft>
 			<ContentRight>
 				<Wallet />

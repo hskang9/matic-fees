@@ -12,7 +12,7 @@ const LandingStory = {
 	title: 'App/Landing',
 	component: LandingComponent,
 	argTypes: {
-		gasFeeMatic: numberOptions,
+		gasFeeShiden: numberOptions,
 		gasFiat: numberOptions,
 		totalGas: numberOptions,
 		totalTx: numberOptions,
@@ -32,7 +32,7 @@ const Template = (args: Props) => <LandingComponent {...args} />;
 export const LandingPrimary = Template.bind({});
 // @ts-ignore
 LandingPrimary.args = {
-	gasFeeMatic: 0.123,
+	gasFeeShiden: 0.123,
 	gasFiat: 0.617,
 	fiatSymbol: FiatOptions.USD,
 	totalGas: 1000,

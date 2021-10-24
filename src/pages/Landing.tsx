@@ -50,7 +50,7 @@ export const FiatOptions = {
 };
 
 export type Props = {
-	gasFeeMatic: number;
+	gasFeeShiden: number;
 	gasFiat: number;
 	fiatSymbol: string;
 	totalGas: number;
@@ -80,7 +80,7 @@ export const LandingLoading = () => (
 
 export const LandingEmpty = () => (
 	<Container>
-		<LandingHeader>Connect your wallet to see MATIC gas stats.</LandingHeader>
+		<LandingHeader>Connect your wallet to see SDN gas stats.</LandingHeader>
 	</Container>
 );
 
@@ -89,8 +89,8 @@ export const Landing = (props: Props) => {
 		<Container>
 			<LandingHeader>
 				{`You've spent `}
-				<NumberDetail>{numeral(props.gasFeeMatic).format('0.00000')}</NumberDetail>
-				{` MATIC on gas. Right now, that's `}
+				<NumberDetail>{numeral(props.gasFeeShiden).format('0.00000')}</NumberDetail>
+				{` SDN on gas. Right now, that's `}
 				<NumberDetail>{`${props.fiatSymbol}${numeral(props.gasFiat).format(
 					'0,0.0000',
 				)}`}</NumberDetail>
@@ -111,7 +111,7 @@ export const Landing = (props: Props) => {
 						? 'nothing'
 						: numeral(props.failedCost).format('0,0.0000')}
 				</NumberDetail>{' '}
-				MATIC.
+				SDN.
 			</LandingHeader>
 		</Container>
 	);
