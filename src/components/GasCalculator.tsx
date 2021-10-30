@@ -100,7 +100,7 @@ export const GasCalculator = () => {
 		const fetchTxs = async () => {
 			try {
 				const txsResp = await makeRequest<TransactionsResponse>(
-					`https://blockscout.com/astar/shiden/api?module=account&action=txlist&address=${account}&startblock=33333&endblock=99999999&sort=asc`,
+					`https://blockscout.com/shiden/api?module=account&action=txlist&address=${account}&startblock=33333&endblock=99999999&sort=asc`,
 				);
 
 				const txs = txsResp.result;
